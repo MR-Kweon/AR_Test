@@ -4,32 +4,21 @@ using UnityEngine;
 
 public class ContactTrigger : MonoBehaviour
 {
-    public bool eventActivate = false;
+    public bool contactTrigger = false;
 
-    Renderer myRender;
-    public Color contactColor;
-
-    private void Start()
+    private void OnTriggerStay(Collider other)
     {
-        myRender = GetComponent<Renderer>();
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Trigger")
+        if(other.tag == "Trigger")
         {
-            eventActivate = true;
-            myRender.material.color = contactColor;
-            Debug.Log("접촉");
+            contactTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Trigger")
+        if(other.tag == "Trigger")
         {
-            eventActivate = false;
-            myRender.material.color = Color.white;
+            contactTrigger = false;
         }
     }
 }

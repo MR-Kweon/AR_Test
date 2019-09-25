@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class ActiveCheck : MonoBehaviour
 {
-    public bool active = false;
+    public bool activeCheck = false;
 
     void Update()
     {
-        CheckOn();
-    }
-
-    void CheckOn ()
-    {
         if (GetComponent<BoxCollider>().enabled == true)
         {
-            active = true;
+            activeCheck = true;
         }
 
         else
         {
-            active = false;
+            activeCheck = false;
         }
     }
 }

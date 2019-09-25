@@ -4,39 +4,18 @@ using UnityEngine;
 
 public class MoveToCore : MonoBehaviour
 {
-    public ActiveManager activeManager;
-    public ContactTrigger eventOn;
-    public GameObject triggerRight;
-    public GameObject objectCore;
+    public GameObject trigger;
+    public GameObject targetCore;
+
     public float speed;
 
     void Update()
     {
-        int onCount = activeManager.count;
+        Vector3 coreDirection = targetCore.transform.position;
 
-        bool activate = eventOn.eventActivate;
-
-        Vector3 originDirection = transform.position;
-
-        Vector3 coreDirection = objectCore.transform.position;
-
-        Vector3 spareDirection = new Vector3(-0.15f, -0.15f, -0.15f);
-
-        Vector3 moveDirection = coreDirection - originDirection;
-
-        Vector3 backDirection = triggerRight.transform.position;
-
-        if (onCount == 1)
+        if (trigger.GetComponent<ContactTrigger>().contactTrigger == true)
         {
-            if (activate == true)
-            {
-                transform.position = Vector3.Lerp(transform.position, coreDirection, Time.deltaTime * speed);
-            }
-
-            else
-            {
-                transform.position = Vector3.Lerp(transform.position, backDirection, Time.deltaTime * speed);
-            }
+            transform.position = Vector3.Lerp(transform.position, coreDirection, Time.deltaTime * speed);
         }
     }
 }
